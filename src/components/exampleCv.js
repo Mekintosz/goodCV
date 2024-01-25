@@ -4,7 +4,7 @@ const exampleCv = {
         title: "personal info",
         firstName: "Andy",
         lastName: "Sliwinski",
-        profesionalTitle: "Front-end developer",
+        professionalTitle: "Front-end developer",
         mobile: "123 456 789",
         email: "andy.developer@devmail.com",
         address: "Bridge Street 7, Bristol, UK"
@@ -12,12 +12,12 @@ const exampleCv = {
     1: {
         id: 1,
         title: "experience",
-        childsIds: [3,4]
+        childIds: [3,4]
     },
     2: {
         id:2,
         title: "education",
-        childsIds: [5]
+        childIds: [5]
     },
     3: {
         id: 3,
@@ -42,5 +42,9 @@ const exampleCv = {
         title: "education section",
         couresTitle: "Computer Science",
         establishment: "London University",
-        yearCompleted: "2010"
-    }}
+        yearCompleted: "2010",
+        description: " "
+    }
+}
+
+export default exampleCv
