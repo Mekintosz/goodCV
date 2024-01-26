@@ -5,9 +5,10 @@ import PersonalInformationInput from './PersonalInfo'
 export default function CvDataInput() {
     return (
         <>
+        <PersonalInformationInput />
         <EducationSectionInput />
         <ExperienceSectionInput />
-        <PersonalInformationInput />
+       
         </>
     )
 }

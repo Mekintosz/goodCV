@@ -1,5 +1,9 @@
-const exampleCv = {
-    0: {
+export const exampleCv = {
+    root: {
+        id: 'root',
+        childIds: [0, 1, 2]
+    },
+    personalInfo: {
         id: 0,
         title: "personal info",
         firstName: "Andy",
@@ -9,12 +13,12 @@ const exampleCv = {
         email: "andy.developer@devmail.com",
         address: "Bridge Street 7, Bristol, UK"
     },
-    1: {
+    experience: {
         id: 1,
         title: "experience",
         childIds: [3,4]
     },
-    2: {
+    education: {
         id:2,
         title: "education",
         childIds: [5]
@@ -46,5 +50,3 @@ const exampleCv = {
         description: " "
     }
 }
-
-export default exampleCv

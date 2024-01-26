@@ -1,28 +1,65 @@
-export default function PersonalInformationInput (props) {
+export default function PersonalInformationInput (personalInfo, setPersonalInfo) {
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setPersonalInfo({
+            ...personalInfo,
+            [name]: value
+        })
+    }
+
+    function clearPersonalInfo() {
+        setPersonalInfo({})
+    }
+
     return (
         <form onSubmit={}>
             <label>First name
-                <input type="text">
+                <input 
+                 placeholder="First name"
+                 type="text"
+                 name="firstName"
+                 value={personalInfo.firstName}
+                 onChange={handleChange}
+                >
                 </input>
             </label>
             <label>Surname
-                <input type="text">
+                <input 
+                 type="text"
+                 name="lastName"
+                 value={personalInfo.lastName}
+                 onChange={handleChange}>
                 </input>
             </label>
-            <label>Profesional title
-                <input type="text">
+            <label>Professional title
+                <input 
+                type="text"
+                name="professionalTitle"
+                value={personalInfo.professionalTitle}
+                onChange={handleChange}
+                >
                 </input>
             </label>
             <label>Mobile
-                <input type="text">
+                <input type="text"
+                name="mobile"
+                value={personalInfo.mobile}
+                onChange={handleChange}>
                 </input>
             </label>
             <label>email
-                <input type="text">
+                <input type="text"
+                name="email"
+                value={personalInfo.email}
+                onChange={handleChange}>
                 </input>
             </label>
             <label>Address
-                <input type="text">
+                <input type="textarea"
+                name="address"
+                value={personalInfo.address}
+                onChange={handleChange}>
                 </input>
             </label>
             <div className="btn-container">
@@ -32,9 +69,9 @@ export default function PersonalInformationInput (props) {
                 <button
                   type="button"
                   className="btn btn-delete"
-                  onClick={}
+                  onClick={clearPersonalInfo}
                 >
-                  Delete
+                  Clear
                 </button>
               </div>
         </form>
