@@ -1,19 +1,30 @@
-export default function PersonalInformationInput (personalInfo, setPersonalInfo) {
+export default function PersonalInformationInput ({personalInfo, setPersonalInfo}) {
 
-    function handleChange(e) {
+    const handleChange = (e) =>{
         const { name, value } = e.target;
-        setPersonalInfo({
+        setPersonalInfo((personalInfo) => (
+            {
             ...personalInfo,
             [name]: value
-        })
+            }
+        ))
     }
 
-    function clearPersonalInfo() {
-        setPersonalInfo({})
+    const clearPersonalInfo = () => {
+        setPersonalInfo({firstName: "",
+        lastName: "",
+        title: "",
+        professionalTitle: "",
+        mobile: "",
+        email: "",
+        address: ""})
     }
+
+
+    
 
     return (
-        <form onSubmit={}>
+        <form onSubmit={clearPersonalInfo}>
             <label>First name
                 <input 
                  placeholder="First name"
@@ -63,7 +74,11 @@ export default function PersonalInformationInput (personalInfo, setPersonalInfo)
                 </input>
             </label>
             <div className="btn-container">
-                <button type="submit" className="btn btn-save">
+                <button 
+                type="submit" 
+                className="btn btn-save"
+                
+                >
                   Save
                 </button>
                 <button

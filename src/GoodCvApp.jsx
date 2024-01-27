@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import exampleCv from './components/exampleCv.js'
-import EducationSectionInput from './Education'
-import ExperienceSectionInput from './Experience'
-import PersonalInformationInput from './PersonalInfo'
-import './App.css'
+// import EducationSectionInput from './components/cv-input/EducationSectionInput.jsx'
+// import ExperienceSectionInput from './components/cv-input/ExperienceSectionInput.jsx'
+import PersonalInfo from './components/cv-input/PersonalInfo'
+import PersonalInfoDisplay from './components/cv-display/PersonalInfoDisplay'
+// import EducationDisplay from './components/cv-display/EducationDisplay'
+// import ExperienceDisplay from './components/cv-display/ExperienceDisplay'
+import './styles/App.css'
 
 export default function GoodCvApp() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -59,14 +61,24 @@ export default function GoodCvApp() {
 
   return (
     <>
-        <PersonalInformationInput 
-        personalInfo
-        setPersonalInfo
-        />
-        <EducationSectionInput 
-        />
-        <ExperienceSectionInput />
-        
+    <div>
+      <PersonalInfo
+      personalInfo = {personalInfo}
+      setPersonalInfo = {setPersonalInfo} 
+      />
+      {/* <EducationSectionInput 
+      />
+      <ExperienceSectionInput /> */}
+    </div>
+      <PersonalInfoDisplay
+      personalInfo = {personalInfo}
+      />
+      {/* <EducationSectionInput 
+      />
+      <ExperienceSectionInput /> */}
+
+       
+      
     </>
   )
 }
