@@ -1,22 +1,66 @@
 
 
-export default function EducationSectionInput (props) {
+export default function EducationSectionInput ({education, setEducation}) {
+  
+  const handleChange = (e) =>{
+    const { name, value } = e.target;
+    setEducation((education) => (
+        {...education,
+          0:{
+        ...education[0],
+        [name]: value}
+        }
+      
+    ))
+}
+
+const clearEducation = () => {
+  setEducation((education) => (
+    {
+    ...education,
+    0:{
+      courseTitle: "",
+      establishment: "",
+      yearCompleted: "",
+      description: ""}
+    }))
+}
+
     return (
-        <form onSubmit={}>
+        <form onSubmit={clearEducation}>
             <label>Course
-                <input type="text">
+                <input 
+                type="text"
+                name="courseTitle"
+                value={education.courseTitle}
+                onChange={handleChange}
+                >
                 </input>
             </label>
             <label>Educational Establishment
-                <input type="text">
+                <input 
+                type="text"
+                name="establishment"
+                value={education.establishment}
+                onChange={handleChange}
+                >
                 </input>
             </label>
             <label>Year completed
-                <input type="text">
+                <input 
+                type="text"
+                name="yearCompleted"
+                value={education.yearCompleted}
+                onChange={handleChange}
+                >
                 </input>
             </label>
             <label>Description
-                <textarea >
+                <textarea 
+                name="description"
+                value={education.description}
+                onChange={handleChange}
+                >
                 </textarea>
             </label>
             <div className="btn-container">
@@ -26,9 +70,9 @@ export default function EducationSectionInput (props) {
                 <button
                   type="button"
                   className="btn btn-delete"
-                  onClick={}
+                  onClick={clearEducation}
                 >
-                  Delete
+                  Clear
                 </button>
               </div>
         </form>

@@ -20,9 +20,6 @@ export default function PersonalInformationInput ({personalInfo, setPersonalInfo
         address: ""})
     }
 
-
-    
-
     return (
         <form onSubmit={clearPersonalInfo}>
             <label>First name
@@ -75,7 +72,7 @@ export default function PersonalInformationInput ({personalInfo, setPersonalInfo
             </label>
             <div className="btn-container">
                 <button 
-                type="submit" 
+                type="button" 
                 className="btn btn-save"
                 
                 >
