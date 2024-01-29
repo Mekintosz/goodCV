@@ -1,10 +1,16 @@
-export default function PersonalInfoDisplay({education}) {
-    return (
-        <div>
-            <p className="education-paragraph">{education.courseTitle}</p>
-            <p className="education-paragraph">{education.establishment}</p>
-            <p className="education-paragraph">{education.yearCompleted}</p>
-            <p className="education-paragraph">{education.description}</p>
-        </div>    
-    )
+export default function EducationDisplay({education}) {
+   
+    const educationItem = Object.values(education).map(item =>
+    <li className="education-item" key={item.id}>
+        <span>{item.courseTitle}</span>
+        <span>{item.establishment}</span>
+        <span>{item.yearCompleted}</span>
+        <span>{item.description}</span>
+    </li>
+    );
+        return (
+            <ul>
+              {educationItem }
+            </ul>    
+        )
 }

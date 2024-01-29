@@ -1,6 +1,6 @@
+import { v4 as uuidv4 } from 'uuid';
 
-
-export default function EducationSectionInput ({education, setEducation}) {
+export default function EducationSectionInput ({education, setEducation, activeSectionId}) {
   
   const handleChange = (e) =>{
     const { name, value } = e.target;
@@ -12,19 +12,20 @@ export default function EducationSectionInput ({education, setEducation}) {
         }
       
     ))
-}
+  }
 
-const clearEducation = () => {
-  setEducation((education) => (
-    {
-    ...education,
-    0:{
-      courseTitle: "",
-      establishment: "",
-      yearCompleted: "",
-      description: ""}
-    }))
-}
+  const clearEducation = () => {
+    setEducation((education) => (
+      {
+      ...education,
+      0:{
+        courseTitle: "",
+        establishment: "",
+        yearCompleted: "",
+        description: ""}
+      }
+    ))
+  }
 
     return (
         <form onSubmit={clearEducation}>

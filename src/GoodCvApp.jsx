@@ -20,15 +20,22 @@ export default function GoodCvApp() {
 
   const [education, setEducation] = useState(
       {
-      root: [0],
-      0:  {
+      0:{
           id: 0,
           title: "education section",
-          courseTitle: "Computer Science",
+          courseTitle: "Beng Computer Science",
           establishment: "London University",
           yearCompleted: "2010",
           description: " "
-          }
+          },
+      1:{
+        id: 1,
+        title: "education section",
+        courseTitle: "Msc Computer Science",
+        establishment: "London University",
+        yearCompleted: "2012",
+        description: " "
+        }
       }
   );
 
@@ -55,7 +62,7 @@ export default function GoodCvApp() {
       },
     }
   );
-  const [activeSectionId, setActiveSectionId] = useState(null);
+  const [activeSectionId, setActiveSectionId] = useState(0);
 
   return (
     <>
@@ -67,6 +74,7 @@ export default function GoodCvApp() {
       <EducationSectionInput 
         education = {education[0]}
         setEducation = {setEducation}
+        activeSectionId={activeSectionId}
       />
     </div>
       <PersonalInfoDisplay
