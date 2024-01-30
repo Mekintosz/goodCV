@@ -5,6 +5,7 @@ import PersonalInfo from './components/cv-input/PersonalInfo'
 import PersonalInfoDisplay from './components/cv-display/PersonalInfoDisplay'
 import EducationDisplay from './components/cv-display/EducationDisplay'
 // import ExperienceDisplay from './components/cv-display/ExperienceDisplay'
+import * as creators from './components/cv-input/creatorsFunctions.jsx'
 import './styles/App.css'
 
 export default function GoodCvApp() {
@@ -19,16 +20,15 @@ export default function GoodCvApp() {
       });
 
   const [education, setEducation] = useState(
+      [
       {
-      0:{
-          id: 0,
-          title: "education section",
+          ...creators.createEducationItem(),
           courseTitle: "Beng Computer Science",
           establishment: "London University",
           yearCompleted: "2010",
-          description: " "
+          description: "2.1"
           },
-      1:{
+      {
         id: 1,
         title: "education section",
         courseTitle: "Msc Computer Science",
@@ -36,7 +36,7 @@ export default function GoodCvApp() {
         yearCompleted: "2012",
         description: " "
         }
-      }
+      ]
   );
 
   const [experience, setExperience] = useState(
