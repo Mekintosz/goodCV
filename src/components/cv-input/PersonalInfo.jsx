@@ -21,7 +21,7 @@ export default function PersonalInformationInput ({personalInfo, setPersonalInfo
     }
 
     return (
-        <form onSubmit={clearPersonalInfo}>
+        <form className="flex" onSubmit={clearPersonalInfo}>
             <label>First name
                 <input 
                  placeholder="First name"

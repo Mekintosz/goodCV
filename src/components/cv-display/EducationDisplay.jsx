@@ -1,6 +1,6 @@
 export default function EducationDisplay({education}) {
    
-    const educationItem = Object.values(education).map(item =>
+    const educationItem = education.map(item =>
     <li className="education-item" key={item.id}>
         <span>{item.courseTitle}</span>
         <span>{item.establishment}</span>
@@ -10,7 +10,7 @@ export default function EducationDisplay({education}) {
     );
         return (
             <ul>
-              {educationItem }
+              {educationItem}
             </ul>    
         )
 }

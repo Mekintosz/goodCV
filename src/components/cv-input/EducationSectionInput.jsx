@@ -1,40 +1,16 @@
-import { v4 as uuidv4 } from 'uuid';
+import './edu-sec-in.css'
 
-export default function EducationSectionInput ({education, setEducation, activeSectionId}) {
+export default function EducationSectionInput ({ education, onEduChange, activeSectionId, onClear }) {
   
-  const handleChange = (e) =>{
-    const { name, value } = e.target;
-    setEducation((education) => (
-        {...education,
-          0:{
-        ...education[0],
-        [name]: value}
-        }
-      
-    ))
-  }
-
-  const clearEducation = () => {
-    setEducation((education) => (
-      {
-      ...education,
-      0:{
-        courseTitle: "",
-        establishment: "",
-        yearCompleted: "",
-        description: ""}
-      }
-    ))
-  }
-
+  
     return (
-        <form onSubmit={clearEducation}>
+        <form className="flex" onSubmit={2}>
             <label>Course
                 <input 
                 type="text"
                 name="courseTitle"
-                value={education.courseTitle}
-                onChange={handleChange}
+                value={education[0].courseTitle}
+                onChange={e => onEduChange(education[0].id, "courseTitle", e.target.value)}
                 >
                 </input>
             </label>
@@ -42,8 +18,8 @@ export default function EducationSectionInput ({education, setEducation, activeS
                 <input 
                 type="text"
                 name="establishment"
-                value={education.establishment}
-                onChange={handleChange}
+                value={education[0].establishment}
+                onChange={e => onEduChange(education[0].id, "establishment", e.target.value)}
                 >
                 </input>
             </label>
@@ -51,16 +27,16 @@ export default function EducationSectionInput ({education, setEducation, activeS
                 <input 
                 type="text"
                 name="yearCompleted"
-                value={education.yearCompleted}
-                onChange={handleChange}
+                value={education[0].yearCompleted}
+                onChange={e => onEduChange(education[0].id, "yearCompleted", e.target.value)}
                 >
                 </input>
             </label>
             <label>Description
                 <textarea 
                 name="description"
-                value={education.description}
-                onChange={handleChange}
+                value={education[0].description}
+                onChange={e => onEduChange(education[0].id, "description", e.target.value)}
                 >
                 </textarea>
             </label>
@@ -71,7 +47,7 @@ export default function EducationSectionInput ({education, setEducation, activeS
                 <button
                   type="button"
                   className="btn btn-delete"
-                  onClick={clearEducation}
+                  onClick={() => onClear(activeSectionId)}
                 >
                   Clear
                 </button>

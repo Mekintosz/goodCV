@@ -5,7 +5,7 @@ import PersonalInfo from './components/cv-input/PersonalInfo'
 import PersonalInfoDisplay from './components/cv-display/PersonalInfoDisplay'
 import EducationDisplay from './components/cv-display/EducationDisplay'
 // import ExperienceDisplay from './components/cv-display/ExperienceDisplay'
-import * as creators from './components/cv-input/creatorsFunctions.jsx'
+import * as creators from './components/cv-input/creatorFunctions.jsx'
 import './styles/App.css'
 
 export default function GoodCvApp() {
@@ -21,48 +21,72 @@ export default function GoodCvApp() {
 
   const [education, setEducation] = useState(
       [
-      {
+        {
           ...creators.createEducationItem(),
           courseTitle: "Beng Computer Science",
           establishment: "London University",
           yearCompleted: "2010",
           description: "2.1"
-          },
-      {
-        id: 1,
-        title: "education section",
-        courseTitle: "Msc Computer Science",
-        establishment: "London University",
-        yearCompleted: "2012",
-        description: " "
+        },
+        {
+          ...creators.createEducationItem(),
+          courseTitle: "Msc Computer Science",
+          establishment: "London University",
+          yearCompleted: "2012",
+          description: " "
         }
       ]
   );
 
   const [experience, setExperience] = useState(
-    {
-      root: [0],
-      0:{
-        id: 0,
-        title: "experience section",
+    [
+      {
+        ...creators.createExperienceItem(),
         position: "UI Designer",
         company: "Peer Inc.",
         from: "september 2011",
         to: "august 2013",
         description: "Design desktop applications for restaurants and car dealers."
       },
-      1:{
-        id: 1,
-        title: "experience section",
+      {
+        ...creators.createExperienceItem(),
         position: "UI Senior Designer",
         company: "Peer Inc.",
         from: "september 2011",
         to: "august 2013",
         description: "Design desktop and mobile applications for a major corporation."
       },
-    }
+    ]
   );
-  const [activeSectionId, setActiveSectionId] = useState(0);
+
+  const [activeSectionId, setActiveSectionId] = useState(education[0].id)
+ 
+  const handleEduChange = (id, entry, value) => {
+    const newData = education.map( item => {
+      if (id === item.id) {
+        return {
+          ...item,
+          [entry]: value
+        };
+      } else return item
+    })
+    setEducation(newData)
+  }
+
+  const clearEducation = (id) => {
+    const newData = education.map( item => {
+      if (id === item.id) {
+        return {
+          ...item,
+          courseTitle: "",
+        establishment: "",
+        yearCompleted: "",
+        description: ""
+        };
+      } else return item
+    })
+    setEducation(newData)
+  }
 
   return (
     <>
@@ -72,16 +96,17 @@ export default function GoodCvApp() {
       setPersonalInfo = {setPersonalInfo} 
       />
       <EducationSectionInput 
-        education = {education[0]}
-        setEducation = {setEducation}
-        activeSectionId={activeSectionId}
+        education = {education}
+       onEduChange = {handleEduChange}
+       activeSectionId = {activeSectionId}
+       onClear = {clearEducation}
       />
     </div>
       <PersonalInfoDisplay
       personalInfo = {personalInfo}
       />
       <EducationDisplay 
-      education = {education[0]}
+      education = {education}
       />  
     </>
   )
