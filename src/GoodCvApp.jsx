@@ -59,7 +59,9 @@ export default function GoodCvApp() {
     ]
   );
 
-  const [activeSectionId, setActiveSectionId] = useState(education[0].id)
+  const [activeSectionId, setActiveSectionId] = useState(education[1].id)
+
+
  
   const handleEduChange = (id, entry, value) => {
     const newData = education.map( item => {
@@ -89,8 +91,8 @@ export default function GoodCvApp() {
   }
 
   return (
-    <>
-    <div>
+    <div className='app'>
+    <div className='section'>
       <PersonalInfo
       personalInfo = {personalInfo}
       setPersonalInfo = {setPersonalInfo} 
@@ -102,13 +104,18 @@ export default function GoodCvApp() {
        onClear = {clearEducation}
       />
     </div>
-      <PersonalInfoDisplay
+    <div className='section'>
+    <PersonalInfoDisplay
       personalInfo = {personalInfo}
+      
       />
       <EducationDisplay 
       education = {education}
+      onEditClick = {setActiveSectionId}
       />  
-    </>
+    </div>
+      
+    </div>
   )
 }
 

@@ -9,8 +9,8 @@ export default function EducationSectionInput ({ education, onEduChange, activeS
                 <input 
                 type="text"
                 name="courseTitle"
-                value={education[0].courseTitle}
-                onChange={e => onEduChange(education[0].id, "courseTitle", e.target.value)}
+                value={education.find(item => item.id === activeSectionId).courseTitle}
+                onChange={e => onEduChange(activeSectionId, "courseTitle", e.target.value)}
                 >
                 </input>
             </label>
@@ -18,8 +18,8 @@ export default function EducationSectionInput ({ education, onEduChange, activeS
                 <input 
                 type="text"
                 name="establishment"
-                value={education[0].establishment}
-                onChange={e => onEduChange(education[0].id, "establishment", e.target.value)}
+                value={education.find(item => item.id === activeSectionId).establishment}
+                onChange={e => onEduChange(activeSectionId, "establishment", e.target.value)}
                 >
                 </input>
             </label>
@@ -27,16 +27,16 @@ export default function EducationSectionInput ({ education, onEduChange, activeS
                 <input 
                 type="text"
                 name="yearCompleted"
-                value={education[0].yearCompleted}
-                onChange={e => onEduChange(education[0].id, "yearCompleted", e.target.value)}
+                value={education.find(item => item.id === activeSectionId).yearCompleted}
+                onChange={e => onEduChange(activeSectionId, "yearCompleted", e.target.value)}
                 >
                 </input>
             </label>
             <label>Description
                 <textarea 
                 name="description"
-                value={education[0].description}
-                onChange={e => onEduChange(education[0].id, "description", e.target.value)}
+                value={education.find(item => item.id === activeSectionId).description}
+                onChange={e => onEduChange(activeSectionId, "description", e.target.value)}
                 >
                 </textarea>
             </label>
