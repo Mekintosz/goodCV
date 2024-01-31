@@ -94,8 +94,17 @@ export default function GoodCvApp() {
   function addEducationSection() {
     const newEducation = [...education, {...creators.createEducationItem(), courseTitle: "Title"}]
     setEducation(newEducation)
-    setActiveSectionId(newEducation[newEducation.length-1].id)
-       
+    setActiveSectionId(newEducation[newEducation.length-1].id)   
+  }
+
+  function removeEduSection(id) {
+    if (education.length < 2) return
+    else {
+    const newEducation = education.filter(item => {
+      if (item.id !== id) return item
+    })
+    setEducation(newEducation)
+    }
   }
 
   return (
@@ -116,6 +125,7 @@ export default function GoodCvApp() {
         onEduChange = {handleEduChange}
         activeSectionId = {activeSectionId}
         onClear = {clearEducation}
+        
         />
       </FormWindow>
     </div>
@@ -127,6 +137,7 @@ export default function GoodCvApp() {
       <EducationDisplay 
       education = {education}
       onEditClick = {setActiveSectionId}
+      onRemoveItem = {removeEduSection}
       />  
     </div>
       
