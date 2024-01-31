@@ -6,6 +6,7 @@ import PersonalInfoDisplay from './components/cv-display/PersonalInfoDisplay'
 import EducationDisplay from './components/cv-display/EducationDisplay'
 // import ExperienceDisplay from './components/cv-display/ExperienceDisplay'
 import * as creators from './components/cv-input/creatorFunctions.jsx'
+import FormWindow from './components/cv-input/formWindow.jsx'
 import './styles/App.css'
 
 export default function GoodCvApp() {
@@ -59,7 +60,7 @@ export default function GoodCvApp() {
     ]
   );
 
-  const [activeSectionId, setActiveSectionId] = useState(education[1].id)
+  const [activeSectionId, setActiveSectionId] = useState(education[0].id)
 
 
  
@@ -90,19 +91,33 @@ export default function GoodCvApp() {
     setEducation(newData)
   }
 
+  function addEducationSection() {
+    const newEducation = [...education, {...creators.createEducationItem(), courseTitle: "Title"}]
+    setEducation(newEducation)
+    setActiveSectionId(newEducation[newEducation.length-1].id)
+       
+  }
+
   return (
     <div className='app'>
     <div className='section'>
+      
       <PersonalInfo
       personalInfo = {personalInfo}
       setPersonalInfo = {setPersonalInfo} 
       />
-      <EducationSectionInput 
-        education = {education}
-       onEduChange = {handleEduChange}
-       activeSectionId = {activeSectionId}
-       onClear = {clearEducation}
-      />
+      
+      
+      <FormWindow
+      onAddSection ={addEducationSection}
+      >Education
+        <EducationSectionInput 
+          education = {education}
+        onEduChange = {handleEduChange}
+        activeSectionId = {activeSectionId}
+        onClear = {clearEducation}
+        />
+      </FormWindow>
     </div>
     <div className='section'>
     <PersonalInfoDisplay
