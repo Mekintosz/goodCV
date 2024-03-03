@@ -3,8 +3,9 @@ import './edu-sec-in.css'
 export default function EducationSectionInput ({ education, onEduChange, activeSectionId, onClear }) {
   
   
+  
     return (
-        <form className="flex" onSubmit={2}>
+        <form className="flex">
             <label>Course
                 <input 
                 type="text"

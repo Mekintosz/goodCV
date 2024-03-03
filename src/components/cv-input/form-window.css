@@ -1,3 +1,9 @@
-.add-section-btn {
-    
+.form-window {
+    padding: 1rem 0;
 }
+
+.add-section-btn {
+    position: relative;
+    left: 150px;
+}
+

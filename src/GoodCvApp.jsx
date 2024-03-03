@@ -1,147 +1,137 @@
-import { useState } from 'react'
-import EducationSectionInput from './components/cv-input/EducationSectionInput.jsx'
+import { useState } from "react";
+import EducationSectionInput from "./components/cv-input/EducationSectionInput.jsx";
 // import ExperienceSectionInput from './components/cv-input/ExperienceSectionInput.jsx'
-import PersonalInfo from './components/cv-input/PersonalInfo'
-import PersonalInfoDisplay from './components/cv-display/PersonalInfoDisplay'
-import EducationDisplay from './components/cv-display/EducationDisplay'
+import PersonalInfo from "./components/cv-input/PersonalInfo";
+import PersonalInfoDisplay from "./components/cv-display/PersonalInfoDisplay";
+import EducationDisplay from "./components/cv-display/EducationDisplay";
 // import ExperienceDisplay from './components/cv-display/ExperienceDisplay'
-import * as creators from './components/cv-input/creatorFunctions.jsx'
-import FormWindow from './components/cv-input/formWindow.jsx'
-import './styles/App.css'
+import * as creators from "./components/cv-input/creatorFunctions.jsx";
+import FormWindow from "./components/cv-input/formWindow.jsx";
+import "./styles/App.css";
 
 export default function GoodCvApp() {
   const [personalInfo, setPersonalInfo] = useState({
-        firstName: "Andy",
-        lastName: "Sliwinski",
-        title: "personal info",
-        professionalTitle: "Front-end developer",
-        mobile: "123 456 789",
-        email: "andy.developer@devmail.com",
-        address: "Bridge Street 7, Bristol, UK"
-      });
+    firstName: "Andy",
+    lastName: "Sliwinski",
+    title: "personal info",
+    professionalTitle: "Front-end developer",
+    mobile: "123 456 789",
+    email: "andy.developer@devmail.com",
+    address: "Bridge Street 7, Bristol, UK",
+  });
 
-  const [education, setEducation] = useState(
-      [
-        {
-          ...creators.createEducationItem(),
-          courseTitle: "Beng Computer Science",
-          establishment: "London University",
-          yearCompleted: "2010",
-          description: "2.1"
-        },
-        {
-          ...creators.createEducationItem(),
-          courseTitle: "Msc Computer Science",
-          establishment: "London University",
-          yearCompleted: "2012",
-          description: " "
-        }
-      ]
-  );
+  const [education, setEducation] = useState([
+    {
+      ...creators.createEducationItem(),
+      courseTitle: "Beng Computer Science",
+      establishment: "London University",
+      yearCompleted: "2010",
+      description: "2.1",
+    },
+    {
+      ...creators.createEducationItem(),
+      courseTitle: "Msc Computer Science",
+      establishment: "London University",
+      yearCompleted: "2012",
+      description: " ",
+    },
+  ]);
 
-  const [experience, setExperience] = useState(
-    [
-      {
-        ...creators.createExperienceItem(),
-        position: "UI Designer",
-        company: "Peer Inc.",
-        from: "september 2011",
-        to: "august 2013",
-        description: "Design desktop applications for restaurants and car dealers."
-      },
-      {
-        ...creators.createExperienceItem(),
-        position: "UI Senior Designer",
-        company: "Peer Inc.",
-        from: "september 2011",
-        to: "august 2013",
-        description: "Design desktop and mobile applications for a major corporation."
-      },
-    ]
-  );
+  const [experience, setExperience] = useState([
+    {
+      ...creators.createExperienceItem(),
+      position: "UI Designer",
+      company: "Peer Inc.",
+      from: "september 2011",
+      to: "august 2013",
+      description:
+        "Design desktop applications for restaurants and car dealers.",
+    },
+    {
+      ...creators.createExperienceItem(),
+      position: "UI Senior Designer",
+      company: "Peer Inc.",
+      from: "september 2011",
+      to: "august 2013",
+      description:
+        "Design desktop and mobile applications for a major corporation.",
+    },
+  ]);
 
-  const [activeSectionId, setActiveSectionId] = useState(education[0].id)
+  const [activeSectionId, setActiveSectionId] = useState(education[0].id);
 
-
- 
   const handleEduChange = (id, entry, value) => {
-    const newData = education.map( item => {
+    const newData = education.map((item) => {
       if (id === item.id) {
         return {
           ...item,
-          [entry]: value
+          [entry]: value,
         };
-      } else return item
-    })
-    setEducation(newData)
-  }
+      } else return item;
+    });
+    setEducation(newData);
+  };
 
   const clearEducation = (id) => {
-    const newData = education.map( item => {
+    const newData = education.map((item) => {
       if (id === item.id) {
         return {
           ...item,
           courseTitle: "",
-        establishment: "",
-        yearCompleted: "",
-        description: ""
+          establishment: "",
+          yearCompleted: "",
+          description: "",
         };
-      } else return item
-    })
-    setEducation(newData)
-  }
+      } else return item;
+    });
+    setEducation(newData);
+  };
 
   function addEducationSection() {
-    const newEducation = [...education, {...creators.createEducationItem(), courseTitle: "Title"}]
-    setEducation(newEducation)
-    setActiveSectionId(newEducation[newEducation.length-1].id)   
+    const newEducation = [
+      ...education,
+      { ...creators.createEducationItem(), courseTitle: "Title" },
+    ];
+    setEducation(newEducation);
+    setActiveSectionId(newEducation[newEducation.length - 1].id);
   }
 
   function removeEduSection(id) {
-    if (education.length < 2) return
-    else {
-    const newEducation = education.filter(item => {
-      if (item.id !== id) return item
-    })
-    setEducation(newEducation)
+    if (education.length < 2) {
+      clearEducation(id) 
+      return
     }
+    if (id === activeSectionId) setActiveSectionId(education[0].id)
+      const newEducation = education.filter( item => item.id !== id);
+      console.log(newEducation)
+      setEducation(newEducation)
   }
 
   return (
-    <div className='app'>
-    <div className='section'>
-      
-      <PersonalInfo
-      personalInfo = {personalInfo}
-      setPersonalInfo = {setPersonalInfo} 
-      />
-      
-      
-      <FormWindow
-      onAddSection ={addEducationSection}
-      >Education
-        <EducationSectionInput 
-          education = {education}
-        onEduChange = {handleEduChange}
-        activeSectionId = {activeSectionId}
-        onClear = {clearEducation}
-        
+    <div className="app">
+      <div className="section">
+        <PersonalInfo
+          personalInfo={personalInfo}
+          setPersonalInfo={setPersonalInfo}
         />
-      </FormWindow>
+        <FormWindow onAddSection={addEducationSection}>
+          Education
+        </FormWindow>
+        <EducationSectionInput
+            education={education}
+            onEduChange={handleEduChange}
+            activeSectionId={activeSectionId}
+            onClear={clearEducation}
+          />
+      </div>
+      <div className="section">
+        <PersonalInfoDisplay personalInfo={personalInfo} />
+        <EducationDisplay
+          education={education}
+          onEditClick={setActiveSectionId}
+          onRemoveItem={removeEduSection}
+        />
+      </div>
     </div>
-    <div className='section'>
-    <PersonalInfoDisplay
-      personalInfo = {personalInfo}
-      
-      />
-      <EducationDisplay 
-      education = {education}
-      onEditClick = {setActiveSectionId}
-      onRemoveItem = {removeEduSection}
-      />  
-    </div>
-      
-    </div>
-  )
+  );
 }
-
