@@ -1,12 +1,8 @@
 import "./form-window.css"
 
-export default function FormWindow({ children, onAddSection }) {
+export default function FormWindow({ children }) {
     return(
     <div className="form-window">
-        <button className="add-section-btn"
-        onClick={()=> onAddSection()}>
-            Add section
-        </button>
         {children}
     </div>
     )

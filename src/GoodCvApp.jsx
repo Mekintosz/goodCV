@@ -87,12 +87,14 @@ export default function GoodCvApp() {
     setEducation(newData);
   };
 
-  function addEducationSection() {
+  function addEducationSection(e) {
+    e.preventDefault()
     const newEducation = [
       ...education,
       { ...creators.createEducationItem(), courseTitle: "Title" },
     ];
     setEducation(newEducation);
+    console.log(newEducation)
     setActiveSectionId(newEducation[newEducation.length - 1].id);
   }
 
@@ -101,10 +103,11 @@ export default function GoodCvApp() {
       clearEducation(id) 
       return
     }
-    if (id === activeSectionId) setActiveSectionId(education[0].id)
+    
       const newEducation = education.filter( item => item.id !== id);
-      console.log(newEducation)
       setEducation(newEducation)
+      if (id === activeSectionId) setActiveSectionId(education[1].id)
+      
   }
 
   return (
@@ -114,7 +117,7 @@ export default function GoodCvApp() {
           personalInfo={personalInfo}
           setPersonalInfo={setPersonalInfo}
         />
-        <FormWindow onAddSection={addEducationSection}>
+        <FormWindow >
           Education
         </FormWindow>
         <EducationSectionInput
@@ -122,6 +125,7 @@ export default function GoodCvApp() {
             onEduChange={handleEduChange}
             activeSectionId={activeSectionId}
             onClear={clearEducation}
+            onAddSection={addEducationSection}
           />
       </div>
       <div className="section">

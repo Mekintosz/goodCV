@@ -1,6 +1,6 @@
 import './edu-sec-in.css'
 
-export default function EducationSectionInput ({ education, onEduChange, activeSectionId, onClear }) {
+export default function EducationSectionInput ({ education, onEduChange, activeSectionId, onClear, onAddSection }) {
   
   
   
@@ -42,8 +42,12 @@ export default function EducationSectionInput ({ education, onEduChange, activeS
                 </textarea>
             </label>
             <div className="btn-container">
-                <button type="submit" className="btn btn-save">
-                  Save
+                <button 
+                  type="button"
+                  className="add-section-btn"
+                  onClick={(e) => onAddSection(e)}
+                >
+                  Add section
                 </button>
                 <button
                   type="button"

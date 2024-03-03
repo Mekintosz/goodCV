@@ -1,4 +1,4 @@
-export default function PersonalInformationInput ({personalInfo, setPersonalInfo}) {
+export default function PersonalInformationInput ({personalInfo, setPersonalInfo }) {
 
     const handleChange = (e) =>{
         const { name, value } = e.target;
@@ -71,13 +71,6 @@ export default function PersonalInformationInput ({personalInfo, setPersonalInfo
                 </input>
             </label>
             <div className="btn-container">
-                <button 
-                type="button" 
-                className="btn btn-save"
-                
-                >
-                  Save
-                </button>
                 <button
                   type="button"
                   className="btn btn-delete"
